@@ -1,0 +1,12 @@
+^\.travis\.yml$
+^cran-comments\.md$
+^README\.Rmd$
+^README-.*\.png$
+^.*\.Rproj$
+^\.Rproj\.user$
+^CONTRIBUTING\.md$
+^R/old/*$
+^literature/*$
+^vignettes/example-intro.Rmd$
+^vignettes/example-manuscript.Rmd$
+^appveyor\.yml$

@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+inst/doc
+vignettes/*_cache/
+inst/shiny-pre-fielding/rsconnect
+R/old/output
+literature/
+vignettes/example-intro.Rmd
+vignettes/example-manuscript.Rmd
