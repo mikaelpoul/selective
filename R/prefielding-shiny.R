@@ -4,6 +4,8 @@
 #'
 #' @keywords piloting prepublication rshiny
 #'
+#' @param ... Arguments passed to \code{shiny::runApp}.
+#'
 #' @importFrom shiny runApp
 #'
 #' @examples

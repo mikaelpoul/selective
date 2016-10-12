@@ -6,6 +6,9 @@
 \usage{
 launch_mockup(...)
 }
+\arguments{
+\item{...}{Arguments passed to \code{shiny::runApp}.}
+}
 \description{
 Launch experiment mockup used for piloting.
 }
