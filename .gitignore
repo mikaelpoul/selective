@@ -3,7 +3,7 @@
 .RData
 inst/doc
 vignettes/*_cache/
-inst/shiny-pre-fielding/rsconnect
+inst/prefielding-mockup/rsconnect
 R/old/output
 literature/
 vignettes/example-intro.Rmd
