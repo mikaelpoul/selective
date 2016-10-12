@@ -4,7 +4,7 @@
 \alias{headlines}
 \title{Make all headlines used in the experiment}
 \usage{
-headlines(news_data = "hard")
+headlines(news_type = "hard")
 }
 \arguments{
 \item{news_type}{, either \code{hard} (default) or \code{soft}.}

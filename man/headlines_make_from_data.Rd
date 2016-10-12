@@ -15,7 +15,7 @@ Make all variations of a headline from headline data in list format (see \code{h
 \examples{
 \dontrun{
  hard_news_data <- headlines_data("hard")[[1]]
- hard_news <- headlines_make_from_data(hard_news_data[[1]])
+ hard_news <- headlines_make_from_data(hard_news_data)
  print(hard_news$headline[1])
 }
 }
