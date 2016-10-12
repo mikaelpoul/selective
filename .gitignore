@@ -8,3 +8,7 @@ R/old/output
 literature/
 vignettes/example-intro.Rmd
 vignettes/example-manuscript.Rmd
+*~
+*#
+!.gitignore
+!.Rbuildignore

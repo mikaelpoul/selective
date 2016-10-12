@@ -10,3 +10,5 @@
 ^vignettes/example-intro.Rmd$
 ^vignettes/example-manuscript.Rmd$
 ^appveyor\.yml$
+.*\\~$
+.*\\#$
