@@ -12,5 +12,5 @@
 #' }
 #' @export
 launch_mockup <- function(...) {
-  shiny::runApp(appDir = system.file("prefielding-mockup", package = selective), ...)
+  shiny::runApp(appDir = system.file("prefielding-mockup", package = "selective"), ...)
 }

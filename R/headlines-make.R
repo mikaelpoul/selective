@@ -8,12 +8,17 @@
 #' @examples
 #'\dontrun{
 #'  hard_news_data <- headlines_data("hard")[[1]]
-#'  hard_news <- headlines_make_from_data(hard_news_data[[1]])
+#'  hard_news <- headlines_make_from_data(hard_news_data)
 #'  print(hard_news$headline[1])
 #' }
 #' @export
 headlines_make_from_data <- function(news_data) {
-  UseMethod("headlines_make_from_data", news_data)
+  if ("hard_news_data" %in% class(news_data)) {
+    headlines_make_from_data.hard_news_data(news_data)
+  } else {
+    headlines_make_from_data.soft_news_data(news_data)
+  }
+  ## UseMethod("headlines_make_from_data", news_data)
 }
 
 headlines_make_from_data.hard_news_data <- function(vars) {
@@ -138,8 +143,8 @@ headlines_make_from_data.soft_news_data <- function(vars) {
 #'  print(soft_news$headline[1])
 #' }
 #' @export
-headlines <- function(news_data = "hard") {
-  headlines_data <- headlines_data(news_data)
+headlines <- function(news_type = "hard") {
+  headlines_data <- headlines_data(news_type)
   all_headlines <- lapply(headlines_data, headlines_make_from_data)
   all_headlines <- do.call("rbind", all_headlines)
   all_headlines$id <- 1:nrow(all_headlines)
