@@ -4,7 +4,8 @@
 inst/doc
 vignettes/*_cache/
 inst/prefielding-mockup/rsconnect
-R/old/output
+R/old/
+R/output/
 literature/
 vignettes/example-intro.Rmd
 vignettes/example-manuscript.Rmd

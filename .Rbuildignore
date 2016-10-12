@@ -6,6 +6,7 @@
 ^\.Rproj\.user$
 ^CONTRIBUTING\.md$
 ^R/old/*$
+^R/output/*$
 ^literature/*$
 ^vignettes/example-intro.Rmd$
 ^vignettes/example-manuscript.Rmd$
