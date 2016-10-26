@@ -26,131 +26,227 @@ headlines_data_hard_news <- function() {
   parties <- c("Rødt", "Sv", "Ap", "Sp", "Mdg", "Venstre", "Krf", "Høyre", "Frp")
 
   hard_news <- list(
-    ## Reduce income ineq I: high income tax
-    list(opinion = "Regjeringen burde red. inntektsforskjeller",
-         case = "[Parti]-profil [får kjeft for/får skryt for/lanserer] forslag om å [øke toppskatten/senke toppskatten]",
-         base = "%s-politiker %s å %s toppskatten",
-         order = 1:3,
-         party = parties,
-         valance = c("foreslår", "får kjeft for forslag om", "får skryt for forslag om"),
-         direction = c("øke", "senke")),
 
-    ## Reduce income ineq II: tax for elderly
+    ## Reduce income ineq I: Reduce income disparities
     list(opinion = "Regjeringen burde red. inntektsforskjeller",
-         case = "[Refser/roser/___] [Parti]-topp forslag om skatte[økning/kutt] for eldre",
-         base = "%s%s-topp med nytt forslag om skatte%s for eldre",
+         base = "%solitiker %s vil %s inntektsforskjellene",
+         order = 1:3,
+         party = c("P", paste0(parties, "-p")),
+         valance = c("med forslag som", "får kjeft for forslag som", "får skryt for forslag som"),
+         direction = c("øke", "redusere"),
+         link = "direct"),
+
+    ## Reduce income ineq II: Reduce income ineq
+    list(opinion = "Regjeringen burde red. inntektsforskjeller",
+         base = "%sorslag fra %s-topp som vil %s lønnsforskjeller",
          order = c(2, 1, 3),
-         party = parties,
-         valance = c("", "Refser ", "Roser "),
-         direction = c("økning", "kutt")),
+         party = c("parti", parties),
+         valance = c("F", "Refser f", "Roser f"),
+         direction = c("øke", "redusere"),
+         link = "indirect"),
+
+    ## Reduce income ineq II: More to the rich
+    list(opinion = "Regjeringen burde red. inntektsforskjeller",
+         base = "%s-topp vil %s de rike%s",
+         order = c(1, 3, 2),
+         party = c("Parti", parties),
+         valance = c("", " - blir refset ", " - blir roset"),
+         direction = c("gi mer til", "ta mer fra"),
+         link = "indirect"),
 
     ## Better with more diversity I: More muslims in schools
     list(opinion = "Det er bedre for et land med flere kulturer/religioner",
-         case = "[Refser/roser/valancer] [parti]-politiker for å skrive [er negativ til/er positiv til] muslimer i norske skoler",
-         base = "%s-politiker %s: «vi %s flere muslimer i norske skoler»",
+         base = "%solitiker %s: «vi %s flere muslimer i norske skoler»",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("P", paste0(parties, "-p")),
          valance = c("med Facebook-innlegg", "fordømmes etter Facebook-innlegg", "lovprises etter Facebook-innlegg"),
-         direction = c("trenger ikke", "trenger")),
+         direction = c("trenger ikke", "trenger"),
+         link = "indirect"),
 
     ## Better with more diversity II: Take inn more refugees
     list(opinion = "Det er bedre for et land med flere kulturer/religioner",
-         case = "Lokal [parti]-politiker [får skryt etter uttalelser/får kjeft etter uttalelser/uttaler seg] om å [fjerne/bygge ut] asylmottak",
-         base = "Lokal %s-politiker %s vil %s 5000 nye flyktninger",
+         base = "Lokal%solitiker %s vil %s 5000 nye flyktninger",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("p", paste0(" ", parties, "-p")),
          valance = c("–", "skjelles ut –", "hylles –"),
-         direction = c("hindre at vi tar imot", "ta imot")),
+         direction = c("hindre at vi tar imot", "ta imot"),
+         link = "indirect"),
+
+    ## Better with more diversity II: Direct
+    list(opinion = "Det er bedre for et land med flere kulturer/religioner",
+         base = "%solitiker%s mener det er bedre med %s kulturer og religioner i Norge ",
+         order = c(1, 2, 3),
+         party = c("P", paste0(parties, "-p")),
+         valance = c("", " skjelles ut –", " hylles –"),
+         direction = c("færre", "flere"),
+         link = "direct"),
+
+    ## Refugees same rights to social welfare I: Direct
+    list(opinion = "Refugees should have equal rights to social welfare",
+         base = "%solitker mener flyktninger %sbør ha samme rett til sosialhjelp som nordmenn%s",
+         order = c(1, 3, 2),
+         party = c("P", paste0(parties, "-p")),
+         valance = c("", ", blir skjelt ut", ", blir hyllet"),
+         direction = c("ikke ", ""),
+         link = "direct"),
+
+
+    ## Refugees same rights to social welfare II: NAV-money for refugees
+    list(opinion = "Refugees should have equal rights to social welfare",
+         base = "%s-profil i åpent brev: «jeg vil %sat flyktinger skal få NAV-penger»%s",
+         order = c(1, 3, 2),
+         party = c("Parti", parties),
+         valance = c("", ". Blir latterliggjort i sosial medier.", ". Blir hyllet i sosiale medier."),
+         direction = c("IKKE ", ""),
+         link = "indirect"),
+
+
+    ## Refugees same rights to social welfare III: NAV-money for Syrian refugees
+    list(opinion = "Refugees should have equal rights to social welfare",
+         base = "%s-topp %s Syriske flyktinger%s",
+         order = c(1, 3, 2),
+         party = c("Parti", parties),
+         valance = c("", ", får refs", ", får ros"),
+         direction = c("presser på for å gi NAV-penger til", "truer med å ta NAV-penger fra"),
+         link = "indirect"),
 
     ## Reduce tax burden I: Wealth tax
     list(opinion = "Skattebyrden burde reduseres",
-         case = "[misliker sterkt/liker sterkt/___] [Parti]-politikers forslag om å [øke/senke] formueskatten",
-         base = "Politiker fra %s vil %s formueskatten%s",
+         base = "Politiker%s vil %s formueskatten%s",
          order = c(1, 3, 2),
-         party = parties,
+         party = c("", paste0(" fra ", parties)),
          valance = c("", ", mottar sterk kritikk", ", blir roset"),
-         direction = c("øke", "senke")),
+         direction = c("øke", "senke"),
+         link = "indirect"),
 
     ## Reduce tax burden II: Property tax
     list(opinion = "Skattebyrden burde reduseres",
-         case = "[Stormer mot/Jubler for/___] [Parti]-politikers ønske om å [innføre/avskaffe] eiendomsskatten for samtlige byer i Norge",
-         base = "%s%s-topp som vil %s i alle norske byer",
+         base = "%s%s-topp: Vil %s i alle norske byer.",
          order = c(2, 1, 3),
-         party = parties,
+         party = c("Parti", parties),
          valance = c("", "Stormer mot ", "Jubler for "),
-         direction = c("innføre eiendomsskatt", "avskaffe eiendomsskatten")),
+         direction = c("innføre eiendomsskatt", "avskaffe eiendomsskatten"),
+         link = "indirect"),
+
+    ## Reduce tax burden II: Property tax
+    list(opinion = "Skattebyrden burde reduseres",
+         base = "%s%s-topp mener at skattenivået %sburde reduseres",
+         order = c(2, 1, 3),
+         party = c("Parti", parties),
+         valance = c("", "Flere stormer: ", "Flere jubler: "),
+         direction = c("ikke ", ""),
+         link = "direct"),
+
 
     ## Allow commercial schools I: Allow to profit from private schools
     list(opinion = "Kommersielle skoler burde tillates",
-         case = "[Vil åpne for at noen/Vil sikre at ingen] private skoler skal kunne ta ut profitt – [Parti]-representant [refses/roses/uttaler seg]",
-         base = "%s-representant%s %s private skoler skal kunne ta ut profitt",
+         base = "%srepresentant%s %s private skoler skal kunne ta ut profitt",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("Stortings", paste0(parties, "-")),
          valance = c("", " refses –", " roses –"),
-         direction = c("vil sikre at ingen", "vil åpne for at noen")),
+         direction = c("vil sikre at ingen", "vil åpne for at noen"),
+         link = "indirect"),
 
     ## Allow commercial schools II: More/less private schools
     list(opinion = "Kommersielle skoler burde tillates",
-         case = "[Parti]-profil [høster jubel for / høster sterk kritikk for /lanserer] forslag om [økning/redusering] av antall privatskoler i Norge",
          base = "%s-profil %s forslag om %s privatskoler i Norge",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("Parti", parties),
          valance = c("lanserer", "møter proteststorm for", "møter begeistring for"),
-         direction = c("færre", "flere")),
+         direction = c("færre", "flere"),
+         link = "indirect"),
+
+    ## Allow commercial schools III: More/less private schools
+    list(opinion = "Kommersielle skoler burde tillates",
+         base = "%s-profil%s mener at kommersielle skoler bør %s",
+         order = c(1, 2, 3),
+         party = c("Parti", parties),
+         valance = c("", " møter proteststorm -", " møter begeistring -"),
+         direction = c("tillates", "forbys"),
+         link = "direct"),
+
+    ## Public activities better by private actors I: Direct
+    list(opinion = "Mange offentlige aktiviteter kan gjøres bedre av private aktører",
+         base = "%solitiker mener alle offentlige aktiviteter %skan gjøres bedre av private%s",
+         order = c(1, 3, 2),
+         party = c("P", paste0(parties, "-p")),
+         valance = c("", " – får refs", " – får ros"),
+         direction = c("ikke ", ""),
+         link = "direct"),
 
     ## Public activities better by private actors I: Elderly care
     list(opinion = "Mange offentlige aktiviteter kan gjøres bedre av private aktører",
-         case = "Foreslår å [privatisere/la kommunen ta over] eldreomsorgen, ansvarlig [Parti]-representant [får refs/ får ros /forklarer nærmere]",
-         base = "Foreslår å %s eldreomsorgen, ansvarlig %s-politiker %s",
+         base = "Foreslår å %s eldreomsorgen, ansvarlig %spolitiker %s",
          order = c(3, 1, 2),
-         party = parties,
+         party = c("", paste0(parties, "-")),
          valance = c("forklarer nærmere", "refses", "roses"),
-         direction = c("la kommunen ta seg av", "privatisere")),
+         direction = c("la kommunen ta seg av", "privatisere"),
+         link = "indirect"),
 
     ## Public activities better by private actors II: Privatize Norwegian train service
     list(opinion = "Mange offentlige aktiviteter kan gjøres bedre av private aktører",
-         case = "[Parti]-politiker [får sterk kritikk for/ får mye ros for/presenterer] forslag om at private [bemanningsbyråer/kommunen] i større grad ta seg av vasking av omsorgsboliger",
-         base = "%s-politiker %s forslag: %s NSB",
+         base = "%solitiker %s forslag: %s NSB",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("P", paste0(parties, "-p")),
          valance = c("presenterer", "får pepper for", "får skryt for"),
-         direction = c("vil nekte privatisering av", "vil privatisere")),
+         direction = c("vil nekte privatisering av", "vil privatisere"),
+         link = "indirect"),
 
-    ## Oil/gas extraction in barents I: Fightind for extraction
+    ## Oil/gas extraction in barents I: Direct
     list(opinion = "Ikke tillate oljeboring i LoVe",
-         case = "[Parti]-topp kjemper [for/mot] oljeåpning i Lofoten[BLANK/, - får kritikk/, - får ros]",
+         base = "%solitiker %svil %såpne flere oljefelt i nord",
+         order = c(1, 2, 3),
+         party = c("P", paste0(parties, "-p")),
+         valance = c("", "møter massiv motstand - ", "får massiv støtte - "),
+         direction = c("", "ikke "),
+         link = "indirect"),
+
+    ## Oil/gas extraction in barents II: Fightind for extraction
+    list(opinion = "Ikke tillate oljeboring i LoVe",
          base = "%s-topp kjemper %s oljeboring i Lofoten%s",
          order = c(1, 3, 2),
-         party = parties,
+         party = c("Parti", parties),
          valance = c("", " - møter massiv motstand", " - får massiv støtte"),
-         direction = c("for", "mot")),
+         direction = c("for", "mot"),
+         link = "indirect"),
 
-    ## Oil/gas extraction in barents II: Allow/deny extraction
+    ## Oil/gas extraction in barents III: Allow/deny extraction
     list(opinion = "Ikke tillate oljeboring i LoVe",
-         case = "[Parti]-profil [på twitter/blir latterligjort etter twittermelding/blir roset etter twittermelding] - vil [åpne for/nekte for] oljeboring i Nord",
          base = "%s-profil %s vil %s oljeboring i nord",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("Parti", parties),
          valance = c("på twitter:", "blir latterligjort etter twittermelding –", "blir hedret etter twittermelding –"),
-         direction = c("åpne for", "stenge for")),
+         direction = c("åpne for", "stenge for"),
+         link = "direct"),
 
     ## Equal rights for gay and straight I: FB message
     list(opinion = "Homofile og heterofile bør ha like rettigheter",
-         case = '[Parti]-politiker [på Facebook:/får kritikk etter facebook-melding:/får ros etter facebook-melding:] «Homofile par [MÅ/MÅ IKKE] få like rettigheter som heterofile»',
-         base = '%s-politiker %s «Homofile par %s få like rettigheter som heterofile»',
+         base = '%solitiker %s «Homofile par %s få like rettigheter som heterofile»',
          order = c(1, 2, 3),
-         party = parties,
+         party = c("P", paste0(parties, "-p")),
          valance = c("på Facebook:", "får kritikk etter facebook-status:", "får ros etter facebook-status:"),
-         direction = c("MÅ IKKE", "MÅ")),
+         direction = c("MÅ IKKE", "MÅ"),
+         link = "direct"),
 
     ## Equal rights for gay and straight I: gay friendly/hostile policy proposal
     list(opinion = "Homofile og heterofile bør ha like rettigheter",
          case = "[Parti]-topp [med/får kritikk etter/får ros etter] homovennlig/fientlig lovforslag",
-         base = "%s-politiker %s %s lovforslag",
+         base = "%solitiker %s %s lovforslag",
          order = c(1, 2, 3),
-         party = parties,
+         party = c("P", paste0(parties, "-p")),
          valance = c("med", "hudflettes etter", "lovprises etter"),
-         direction = c("homofientlig", "homovennlig"))
+         direction = c("homofiendtlig", "homovennlig"),
+         link = "indirect"),
+
+    ## Equal rights for gay and straight I: klmgmkøgamkløg
+    list(opinion = "Homofile og heterofile bør ha like rettigheter",
+         case = "[Parti]-topp [med/får kritikk etter/får ros etter] homovennlig/fientlig lovforslag",
+         base = "%solitiker %smener det %sburde være vanskeligere for homofile å kunne gifte seg",
+         order = c(1, 2, 3),
+         party = c("P", paste0(parties, "-p")),
+         valance = c("", "hudflettes: ", "lovprises: "),
+         direction = c("", "ikke "),
+         link = "indirekt")
   )
   names(hard_news) <- paste0("hard_", 1:length(hard_news))
   class(hard_news) <- c("list", "hard_news_data")
@@ -191,8 +287,8 @@ headlines_data_soft_news <- function() {
     ## Norges store sangstjerne [får ros/ får refs/valances] i fersk anmeldelse
     list(topic = "Anmeldelse",
          case = "Norges store sangstjerne [får ros/ får refs/valances] i fersk anmeldelse",
-         base = "Norges store sangstjerne %s i fersk anmeldelse",
-         valance = c("valances", "får refs", "får ros")),
+         base = "Norges store sangstjerne %si fersk anmeldelse",
+         valance = c("", "får refs ", "får ros ")),
 
     ## Denne restauranten [må du prøve mener / må du unngå mener/testes av] våre anmeldere
     list(topic = "Anmeldelse",
@@ -202,9 +298,8 @@ headlines_data_soft_news <- function() {
 
     ## Her er høstens [verste/beste/___] smarttelefoner
     list(topic = "Teknologi",
-         case = "Her er høstens [verste/beste/___] smarttelefoner",
-         base = "Her er høstens %s smarttelefoner",
-         valance = c("", "verste", "beste")),
+         base = "Her er vinterens %ssmarttelefoner",
+         valance = c("", "verste ", "beste ")),
 
     ## Disse TV-ene [kommer best ut / kommer vers ut /er med] i vår nye test
     list(topic = "Teknologi",

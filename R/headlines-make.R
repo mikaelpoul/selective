@@ -18,14 +18,14 @@ headlines_make_from_data <- function(news_data) {
   } else {
     headlines_make_from_data.soft_news_data(news_data)
   }
-  ## UseMethod("headlines_make_from_data", news_data)
 }
 
 headlines_make_from_data.hard_news_data <- function(vars) {
 
   ## Base values
-  base_party <- c("rodt", "sv", "ap", "sp", "mdg", "v", "krf", "h", "frp")
-  base_party_label <- c("Red Party",
+  base_party <- c("none", "rodt", "sv", "ap", "sp", "mdg", "v", "krf", "h", "frp")
+  base_party_label <- c("No party mentioned",
+                        "Red Party",
                         "Socialist Left Party",
                         "Labour Party",
                         "Centre Party",
@@ -70,7 +70,6 @@ headlines_make_from_data.hard_news_data <- function(vars) {
     headlines$party_label <- ifelse(headlines$party_wording == vars$party[i], base_party_label[i], headlines$party_label)
   }
   headlines$party_label <- factor(headlines$party_label, levels = base_party_label)
-
 
   ## Valance
   headlines$valance <- NA
@@ -129,7 +128,8 @@ headlines_make_from_data.soft_news_data <- function(vars) {
 #'
 #' Make all headlines used in the experiment. Uses \code{headlines_data()} and \code{headlines_make_from_data()}. Returns a data frame with the headline, as well as associated id (linked to the data) and variables identifying the integrated treatment component.
 #'
-#' @param news_type , either \code{hard} (default) or \code{soft}.
+#' @param news_type What news type to get, either \code{hard} (default) or \code{soft}.
+#' @param experiment Which experiment to get it from, either \code{1} (default) for the experiment varying social endorsement and soft news, or \code{2} for the experiment varying party type (i.e., for headlines without party and valance).
 #' @keywords headlines prepublication
 #'
 #' @examples

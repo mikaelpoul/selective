@@ -13,3 +13,5 @@ vignettes/example-manuscript.Rmd
 *#
 !.gitignore
 !.Rbuildignore
+R/inst/prefielding-mockup/global.R
+*.#server.R
