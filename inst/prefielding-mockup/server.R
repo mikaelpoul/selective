@@ -9,8 +9,8 @@ draw_headline <- function(version = 3,
                           valance = TRUE,
                           party = TRUE) {
 
-  headlines_hard <- headlines("hard")
-  headlines_soft <- headlines("soft")
+  headlines_hard <- selective::headlines("hard")
+  headlines_soft <- selective::headlines("soft")
 
   if (experiment == 2) {
     version <- "1"

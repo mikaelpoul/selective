@@ -83,7 +83,7 @@ headlines_data_hard_news <- function() {
 
     ## Refugees same rights to social welfare I: Direct
     list(opinion = "Refugees should have equal rights to social welfare",
-         base = "%solitker mener flyktninger %sbør ha samme rett til sosialhjelp som nordmenn%s",
+         base = "%solitiker mener flyktninger %sbør ha samme rett til sosialhjelp som nordmenn%s",
          order = c(1, 3, 2),
          party = c("P", paste0(parties, "-p")),
          valance = c("", ", blir skjelt ut", ", blir hyllet"),
