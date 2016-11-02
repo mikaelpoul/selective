@@ -7,7 +7,7 @@
 headlines(news_type = "hard")
 }
 \arguments{
-\item{news_type}{, either \code{hard} (default) or \code{soft}.}
+\item{news_type}{What news type to get, either \code{hard} (default) or \code{soft}.}
 }
 \description{
 Make all headlines used in the experiment. Uses \code{headlines_data()} and \code{headlines_make_from_data()}. Returns a data frame with the headline, as well as associated id (linked to the data) and variables identifying the integrated treatment component.
