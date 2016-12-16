@@ -14,3 +14,4 @@
 .*\\~$
 .*\\#$
 ^R/inst/prefielding-mockup/global.R$
+^analysis/*$

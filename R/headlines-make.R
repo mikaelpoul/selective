@@ -23,6 +23,22 @@ headlines_make_from_data <- function(news_data) {
 headlines_make_from_data.hard_news_data <- function(vars) {
 
   ## Base values
+  base_opinion <- c("reduce_ineq",
+                    "rel_div_good",
+                    "ref_social_rights",
+                    "lower_taxes",
+                    "allow_priv",
+                    "priv_better",
+                    "not_allow_love",
+                    "eq_rights")
+  base_opinion_label <- c("The government should reduce income disparities",
+                          "It is better for a country if there is a diversity of different religions and beliefs",
+                          "Refugees should have the same rights to social assistance as Norwegians have, even if they are not Norwegian citizens",
+                          "The tax burden should be reduced",
+                          "Commercial private schools should be allowed",
+                          "Many public activities could be done better and cheaper by the private sector",
+                          "We should not allow oil and gas extraction in the Lofoten and Vesterålen areas",
+                          "Heterosexual and homosexual couples should have equal rights.")
   base_party <- c("none", "rodt", "sv", "ap", "sp", "mdg", "v", "krf", "h", "frp")
   base_party_label <- c("No party mentioned",
                         "Red Party",
@@ -48,8 +64,10 @@ headlines_make_from_data.hard_news_data <- function(vars) {
   args_list <- lapply(1:nrow(headlines), function(x) as.character(headlines[x, ]))
   headlines$headline <- sapply(args_list, function(args) do.call(sprintf, as.list(args)))
 
-  ## Attitude and policy
-  headlines$opinion <- vars$opinion
+  ## Attitude and link
+  headlines$opinion <- base_opinion[match(vars$opinion, base_opinion_label)]
+  headlines$opinion_label <- vars$opinion
+  headlines$opinion_link <- vars$link
 
   ## Base wording
   fill_1 <- paste0("[", paste0(ifelse(grepl("^ *$", vars[[base_order[vars$order[1]]]]), "BLANK", vars[[base_order[vars$order[1]]]]), collapse = "/"), "]")
@@ -86,9 +104,8 @@ headlines_make_from_data.hard_news_data <- function(vars) {
   headlines$direction <- factor(headlines$direction, levels = base_direction)
 
   ## Sort and return df
-  headlines <- headlines[, c("opinion", "base", "party_label", "party", "valance", "direction",
-                             "party_wording", "valance_wording", "direction_wording", "base_wording",
-                             "headline")]
+  headlines <- headlines[, c("opinion_label", "opinion", "opinion_link", "party_label", "party", "valance", "direction",
+                             "base", "party_wording", "valance_wording", "direction_wording", "base_wording", "headline")]
   headlines <- headlines[order(headlines$party, headlines$valance, headlines$direction), ]
   rownames(headlines) <- NULL
   return(as.data.frame(headlines))
